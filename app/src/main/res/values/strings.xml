@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Onibus TB</string>
+    <string name="imagem_principal">Imagem Principal</string>
+    <string name="icone_room">icone room</string>
+    <string name="descricaoPrincipal">Horários de Ônibus na palma da sua mão!</string>
+    <string name="horario_urbano">Horários Urbanos</string>
+    <string name="horarios_klabin">Horários Klabin</string>
+    <string name="horarios_industriais">Horários Industriais</string>
+    <string name="estrela_favoritos">estrela Favoritos</string>
 </resources>
