@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imagemPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="257dp"
+        android:contentDescription="@string/imagem_principal"
+        android:scaleType="fitXY"
+        android:src="@drawable/imagem_principal" />
+
+    <TextView
+        android:id="@+id/textoTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/text"
+        android:drawableRight="@drawable/ic_directions_bus_white_48dp"
+        android:drawableEnd="@drawable/ic_directions_bus_white_48dp"
+        android:textSize="48sp" />
+
+
+
+    <TextView
+        android:id="@+id/descricaoPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="145dp"
+        android:text="@string/descricaoPrincipal"
+        android:textAlignment="center"
+        android:textColor="@color/text"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/botao_estilo_redondo"
+            android:src="@drawable/ic_star_white_48dp"
+            android:contentDescription="@string/estrela_favoritos"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="end"/>
+
+        <Button
+            android:id="@+id/horarioUrbano"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/botao_estilo"
+            android:drawableRight="@drawable/ic_location_city_black_48dp"
+            android:drawableEnd="@drawable/ic_location_city_black_48dp"
+            android:textSize="20sp"
+            android:text="@string/horario_urbano"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/horarioKlabin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/botao_estilo"
+            android:drawableRight="@drawable/ic_klabin_logo"
+            android:drawableEnd="@drawable/ic_klabin_logo"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:text="@string/horarios_klabin"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/horarioIndustrial"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botao_estilo"
+            android:drawableRight="@drawable/ic_work_black_48dp"
+            android:drawableEnd="@drawable/ic_work_black_48dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:text="@string/horarios_industriais"
+            android:textAlignment="center" />
+    </LinearLayout>
+</FrameLayout>
