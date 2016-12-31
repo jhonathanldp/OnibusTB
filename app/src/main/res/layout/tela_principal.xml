@@ -65,7 +65,8 @@
             android:drawableEnd="@drawable/ic_location_city_black_48dp"
             android:textSize="20sp"
             android:text="@string/horario_urbano"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:onClick="telaRegioes"/>
 
         <Button
             android:id="@+id/horarioKlabin"
