@@ -7,4 +7,11 @@
     <string name="horarios_klabin">Horários Klabin</string>
     <string name="horarios_industriais">Horários Industriais</string>
     <string name="estrela_favoritos">estrela Favoritos</string>
+    <string name="centro">CENTRO</string>
+
+    <string-array name="selecaoTipoHorario">
+        <item>Dias úteis</item>
+        <item>Sábados</item>
+        <item>Domingos/Feriados</item>
+    </string-array>
 </resources>

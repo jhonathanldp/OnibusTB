@@ -1,8 +1,8 @@
 package com.celusoftwares.onibustb.Activities;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,13 +44,12 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
         listView = (ListView) findViewById(R.id.lista_regioes);
         // verificar se ja existe banco
         File databaseChecker = getApplicationContext().getDatabasePath(dataBase.DBNOME);
-        if(false == databaseChecker.exists()){
+        if (true == databaseChecker.exists()) {
             dataBase.getReadableDatabase();
             //copia banco
-            if (copiarDatabase(this)){
+            if (copiarDatabase(this)) {
                 Toast.makeText(this, "Banco copiado", Toast.LENGTH_SHORT).show();
-            }
-            else{
+            } else {
                 Toast.makeText(this, "Ops, isso é contrangedor, mas ocorreu um erro 2 :(", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -60,25 +59,31 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
 
         listRegioes = dataBase.listarRegioes();
 
-        adapterRegioes = new AdapterRegioes(this,listRegioes);
+        adapterRegioes = new AdapterRegioes(this, listRegioes);
 
         listView.setAdapter(adapterRegioes);
+
+        listView.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Regioes regioes = (Regioes) listView.getItemAtPosition(position);
+        Intent intent = new Intent(this, HorariosActivity.class);
+        intent.putExtra("id_regiao", String.valueOf(regioes.getId()));
+        startActivity(intent);
     }
 
-    private boolean copiarDatabase(Context context){
+    private boolean copiarDatabase(Context context) {
         try {
             InputStream inputStream = context.getAssets().open(dataBase.DBNOME);
             String outFileName = dataBase.DBLOCATION + dataBase.DBNOME;
             OutputStream outputStream = new FileOutputStream(outFileName);
-            byte[]buff = new byte[1024];
+            byte[] buff = new byte[1024];
             int tamanho = 0;
-            while ((tamanho = inputStream.read(buff)) > 0){
-                outputStream.write(buff,0, tamanho); // copiando banco de dados ...
+
+            while ((tamanho = inputStream.read(buff)) > 0) {
+                outputStream.write(buff, 0, tamanho); // copiando banco de dados ...
             }
             outputStream.flush();
             outputStream.close();
