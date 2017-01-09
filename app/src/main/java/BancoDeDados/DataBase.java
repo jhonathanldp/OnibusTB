@@ -4,10 +4,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.Horario;
 import Models.Regioes;
 
 /**
@@ -16,7 +19,7 @@ import Models.Regioes;
  */
 
 public class DataBase extends SQLiteOpenHelper {
-    public static final String DBNOME = "onibustb.sqlite";
+    public static final String DBNOME = "onibustb.sqlite3";
     private Context mContext;
     private SQLiteDatabase mDatabase;
     public static final String DBLOCATION = "/data/data/com.celusoftwares.onibustb/databases/";
@@ -66,5 +69,34 @@ public class DataBase extends SQLiteOpenHelper {
         closeDatabase();
 
         return listRegioes;
+    }
+
+    public List<Horario> listarHorarios(String [] argumentos){
+        Horario horario = null;
+        List<Horario> horarioList = new ArrayList<>();
+        openDatabase();
+        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao";
+        String [] selectionArgs = {"1"};
+        Cursor cursor = mDatabase.rawQuery(sql,null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount() == 0){
+            Log.println(Log.ERROR,"dados", "teste342432");
+        }
+
+        while (!cursor.isAfterLast()){
+            horario = new Horario(cursor.getInt(0), cursor.getInt(1) !=0, cursor.getString(2), cursor.getString(3),
+                    cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getString(8));
+
+            horarioList.add(horario);
+
+            Log.println(Log.INFO,"dados", cursor.getString(7));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        closeDatabase();
+
+        return horarioList;
+
     }
 }

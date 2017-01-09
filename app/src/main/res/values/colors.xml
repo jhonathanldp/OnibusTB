@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#E64A19</color>
     <color name="colorAccent">#FFEB3B</color>
     <color name="text">#FFFFFF</color>
+    <color name="verdeClaro">#8BC34A</color>
+    <color name="limao">#CDDC39</color>
 </resources>
