@@ -8,6 +8,8 @@
     <string name="horarios_industriais">Horários Industriais</string>
     <string name="estrela_favoritos">estrela Favoritos</string>
     <string name="centro">CENTRO</string>
+    <string name="nome_titulo">Ônibus TB</string>
+    <string name="sobre">Sobre</string>
 
     <string-array name="selecaoTipoHorario">
         <item>Dias úteis</item>

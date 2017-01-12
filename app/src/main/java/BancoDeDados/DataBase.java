@@ -75,9 +75,9 @@ public class DataBase extends SQLiteOpenHelper {
         Horario horario = null;
         List<Horario> horarioList = new ArrayList<>();
         openDatabase();
-        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao";
+        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao AND h.id_regiao = ?";
         String [] selectionArgs = {"1"};
-        Cursor cursor = mDatabase.rawQuery(sql,null);
+        Cursor cursor = mDatabase.rawQuery(sql, argumentos);
         cursor.moveToFirst();
 
         if (cursor.getCount() == 0){
