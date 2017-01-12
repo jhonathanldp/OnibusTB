@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.celusoftwares.onibustb.R;
@@ -31,6 +34,7 @@ public class HorariosActivity extends Activity implements AdapterView.OnItemClic
     private AdapterHorarios adapterHorarios;
     private List<Horario> horarioList;
     private ListView listView;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class HorariosActivity extends Activity implements AdapterView.OnItemClic
 
         dataBase = new DataBase(this);
         listView = (ListView) findViewById(R.id.lista_horarios);
+        spinner = (Spinner) findViewById(R.id.selectTipoHorario);
 
         File dataChecker = getApplicationContext().getDatabasePath(dataBase.DBNOME);
 
@@ -56,7 +61,11 @@ public class HorariosActivity extends Activity implements AdapterView.OnItemClic
             }
         }
 
-        String[] parametro = new String[]{"1"};
+        ArrayAdapter<CharSequence> arrayAdapter =  ArrayAdapter.createFromResource(this, R.array.selecaoTipoHorario, R.layout.list_item_spinner);
+        arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+        spinner.setAdapter(arrayAdapter);
+        String[] parametro = new String[]{getIntent().getStringExtra("id_regiao")};
 
         horarioList = dataBase.listarHorarios(parametro);
         Log.println(Log.INFO, "teste", String.valueOf(horarioList.size()));
@@ -93,6 +102,17 @@ public class HorariosActivity extends Activity implements AdapterView.OnItemClic
             e.printStackTrace();
             Toast.makeText(context, "Isso é constrangedor, mas encontramos um problema :(", Toast.LENGTH_SHORT).show();
             return false;
+        }
+    }
+
+    public void favoritoChecked(View v){
+        boolean checked = ((CheckBox)v).isChecked();
+
+        if (checked){
+            ((CheckBox) v).setBackgroundResource(R.drawable.ic_star_black_24dp);
+        }
+        else if (!checked){
+            ((CheckBox) v).setBackgroundResource(R.drawable.ic_star_border_black_24dp);
         }
     }
 }

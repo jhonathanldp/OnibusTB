@@ -3,25 +3,21 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_directions_bus_white_48dp"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:hardwareAccelerated="true">
-
-        <activity android:name=".Activities.MainActivity"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.BairrosActivity"
-            android:theme="@style/AppThemeComActionBar.ActionBar">
-        </activity>
-        <activity android:name=".Activities.HorariosActivity">
-
-        </activity>
+        <activity android:name=".Activities.BairrosActivity"></activity>
+        <activity android:name=".Activities.HorariosActivity"></activity>
 
     </application>
 

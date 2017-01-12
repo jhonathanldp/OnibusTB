@@ -6,4 +6,5 @@
     <color name="text">#FFFFFF</color>
     <color name="verdeClaro">#8BC34A</color>
     <color name="limao">#CDDC39</color>
+    <color name="preto">#000</color>
 </resources>
