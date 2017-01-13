@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,22 +20,17 @@ import Models.Regioes;
  * Responsavel por carregar os dados do Banco SQLite3
  */
 
-public class DataBase extends SQLiteOpenHelper {
-    public static final String DBNOME = "onibustb.sqlite3";
+public class DataBase extends SQLiteAssetHelper {
+    private static final String DBNOME = "onibustb.sqlite3";
     private Context mContext;
     private SQLiteDatabase mDatabase;
-    public static final String DBLOCATION = "/data/data/com.celusoftwares.onibustb/databases/";
+    private static final int DBVERSION = 1;
 
     public DataBase(Context context) {
-        super(context, DBNOME, null, 1);
+        super(context, DBNOME, null, DBVERSION);
         this.mContext = context;
     }
 
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

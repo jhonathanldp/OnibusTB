@@ -43,7 +43,7 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
         dataBase = new DataBase(this);
         listView = (ListView) findViewById(R.id.lista_regioes);
         // verificar se ja existe banco
-        File databaseChecker = getApplicationContext().getDatabasePath(dataBase.DBNOME);
+        /*File databaseChecker = getApplicationContext().getDatabasePath(dataBase.DBNOME);
         if (true == databaseChecker.exists()) {
             dataBase.getReadableDatabase();
             //copia banco
@@ -53,7 +53,7 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
                 Toast.makeText(this, "Ops, isso é contrangedor, mas ocorreu um erro 2 :(", Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
+        }*/
 
         //Iniciar procedimento para carregar lista
 
@@ -74,7 +74,7 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
         startActivity(intent);
     }
 
-    private boolean copiarDatabase(Context context) {
+   /* private boolean copiarDatabase(Context context) {
         try {
             InputStream inputStream = context.getAssets().open(dataBase.DBNOME);
             String outFileName = dataBase.DBLOCATION + dataBase.DBNOME;
@@ -94,5 +94,5 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
             Toast.makeText(context, "Ops, isso é contrangedor, mas ocorreu um erro 1 :(", Toast.LENGTH_SHORT).show();
             return false;
         }
-    }
+    }*/
 }
