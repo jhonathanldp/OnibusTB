@@ -47,7 +47,7 @@ public class HorariosActivity extends Activity implements AdapterView.OnItemClic
         listView = (ListView) findViewById(R.id.lista_horarios);
         spinner = (Spinner) findViewById(R.id.selectTipoHorario);
 
-        File dataChecker = getApplicationContext().getDatabasePath(dataBase.DBNOME);
+        /*File dataChecker = getApplicationContext().getDatabasePath(dataBase.DBNOME);
 
         if(!dataChecker.exists()){
             dataBase.getReadableDatabase();
@@ -59,7 +59,7 @@ public class HorariosActivity extends Activity implements AdapterView.OnItemClic
                 Toast.makeText(this, "Hmm, ocoreu um erro :(", Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
+        }*/
 
         ArrayAdapter<CharSequence> arrayAdapter =  ArrayAdapter.createFromResource(this, R.array.selecaoTipoHorario, R.layout.list_item_spinner);
         arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -81,7 +81,7 @@ public class HorariosActivity extends Activity implements AdapterView.OnItemClic
 
     }
 
-    private boolean copyDatabase(Context context){
+   /* private boolean copyDatabase(Context context){
         try {
             InputStream inputStream = context.getAssets().open(dataBase.DBNOME);
             String outFileName = dataBase.DBLOCATION + dataBase.DBNOME;
@@ -114,5 +114,5 @@ public class HorariosActivity extends Activity implements AdapterView.OnItemClic
         else if (!checked){
             ((CheckBox) v).setBackgroundResource(R.drawable.ic_star_border_black_24dp);
         }
-    }
+    }*/
 }
