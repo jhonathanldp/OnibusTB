@@ -3,19 +3,15 @@ package com.celusoftwares.onibustb.Activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import com.celusoftwares.onibustb.R;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 import BancoDeDados.DataBase;
@@ -29,7 +25,6 @@ import adapter.AdapterRegioes;
  */
 
 public class BairrosActivity extends Activity implements AdapterView.OnItemClickListener {
-    private DataBase dataBase;
     private AdapterRegioes adapterRegioes;
     private List<Regioes> listRegioes;
     private ListView listView;
@@ -40,30 +35,12 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.regioes);
 
-        dataBase = new DataBase(this);
         listView = (ListView) findViewById(R.id.lista_regioes);
-        // verificar se ja existe banco
-        /*File databaseChecker = getApplicationContext().getDatabasePath(dataBase.DBNOME);
-        if (true == databaseChecker.exists()) {
-            dataBase.getReadableDatabase();
-            //copia banco
-            if (copiarDatabase(this)) {
-                Toast.makeText(this, "Banco copiado", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Ops, isso é contrangedor, mas ocorreu um erro 2 :(", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }*/
 
-        //Iniciar procedimento para carregar lista
-
-        listRegioes = dataBase.listarRegioes();
-
-        adapterRegioes = new AdapterRegioes(this, listRegioes);
-
-        listView.setAdapter(adapterRegioes);
+        new CarregarConteudo(this).execute();
 
         listView.setOnItemClickListener(this);
+
     }
 
     @Override
@@ -74,25 +51,44 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
         startActivity(intent);
     }
 
-   /* private boolean copiarDatabase(Context context) {
-        try {
-            InputStream inputStream = context.getAssets().open(dataBase.DBNOME);
-            String outFileName = dataBase.DBLOCATION + dataBase.DBNOME;
-            OutputStream outputStream = new FileOutputStream(outFileName);
-            byte[] buff = new byte[1024];
-            int tamanho = 0;
+    private class CarregarConteudo extends AsyncTask<Void, Integer, List<Regioes>> {
+        private ProgressBar progressBar;
+        private DataBase dataBase;
+        private Context context;
 
-            while ((tamanho = inputStream.read(buff)) > 0) {
-                outputStream.write(buff, 0, tamanho); // copiando banco de dados ...
-            }
-            outputStream.flush();
-            outputStream.close();
-            return true;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(context, "Ops, isso é contrangedor, mas ocorreu um erro 1 :(", Toast.LENGTH_SHORT).show();
-            return false;
+        public CarregarConteudo(Context context) {
+            this.context = context;
         }
-    }*/
+
+        @Override
+        protected void onPreExecute() {
+            dataBase = new DataBase(context);
+            progressBar = (ProgressBar) findViewById(R.id.barraProgressoRegioes);
+            progressBar.setMax(100);
+
+        }
+
+        @Override
+        protected List<Regioes> doInBackground(Void... params) {
+            publishProgress(25);
+            listRegioes = dataBase.listarRegioes();
+            publishProgress(75);
+            adapterRegioes = new AdapterRegioes(context, listRegioes);
+            publishProgress(100);
+            return listRegioes;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            progressBar.setProgress(values[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<Regioes> regioes) {
+            listView.setAdapter(adapterRegioes);
+            progressBar.setVisibility(View.GONE);
+
+        }
+    }
+
 }
