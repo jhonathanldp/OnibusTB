@@ -1,10 +1,9 @@
 package BancoDeDados;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
@@ -21,7 +20,7 @@ import Models.Regioes;
  */
 
 public class DataBase extends SQLiteAssetHelper {
-    private static final String DBNOME = "onibustb.sqlite3";
+    private static final String DBNOME = "onibustb.db";
     private Context mContext;
     private SQLiteDatabase mDatabase;
     private static final int DBVERSION = 1;
@@ -42,7 +41,7 @@ public class DataBase extends SQLiteAssetHelper {
         if (mDatabase != null && mDatabase.isOpen()) {
             return;
         }
-        mDatabase = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
+        mDatabase = getReadableDatabase();
     }
 
     public void closeDatabase() {
@@ -68,26 +67,55 @@ public class DataBase extends SQLiteAssetHelper {
         return listRegioes;
     }
 
-    public List<Horario> listarHorarios(String [] argumentos){
+    public boolean adicionarFavoritoDAO(int idHorario) {
+        final String tbName = "HORARIOS";
+        String sql = "SELECT favorito FROM HORARIOS WHERE id_horario = ?";
+        String[] args = {String.valueOf(idHorario)};
+        openDatabase();
+        Cursor cursor = mDatabase.rawQuery(sql, args);
+        cursor.moveToFirst();
+        boolean isFavorite;
+        if (cursor.getInt(0) != 0) {
+            isFavorite = true;
+        } else {
+            isFavorite = false;
+        }
+        cursor.close();
+        ContentValues contentValues = new ContentValues();
+        if (!isFavorite) {
+            contentValues.put("favorito", 1);
+            mDatabase.update(tbName, contentValues, "id_horario = ?", args);
+            mDatabase.close();
+            return true;
+        } else{
+            contentValues.put("favorito", 0);
+            mDatabase.update(tbName, contentValues, "id_horario = ?", args);
+            mDatabase.close();
+            return false;
+        }
+
+    }
+
+    public List<Horario> listarHorarios(String[] argumentos, String collumName) {
         Horario horario = null;
         List<Horario> horarioList = new ArrayList<>();
         openDatabase();
-        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao AND h.id_regiao = ?";
-        String [] selectionArgs = {"1"};
+        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao AND h." + collumName + " = ?";
+        String[] selectionArgs = {"true"};
         Cursor cursor = mDatabase.rawQuery(sql, argumentos);
         cursor.moveToFirst();
 
-        if (cursor.getCount() == 0){
-            Log.println(Log.ERROR,"dados", "teste342432");
+        if (cursor.getCount() == 0) {
+            Log.println(Log.ERROR, "dados", "teste342432");
         }
 
-        while (!cursor.isAfterLast()){
-            horario = new Horario(cursor.getInt(0), cursor.getInt(1) !=0, cursor.getString(2), cursor.getString(3),
+        while (!cursor.isAfterLast()) {
+            horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getString(3),
                     cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getString(8));
 
             horarioList.add(horario);
 
-            Log.println(Log.INFO,"dados", cursor.getString(7));
+            Log.println(Log.INFO, "dados", cursor.getString(7));
             cursor.moveToNext();
         }
         cursor.close();

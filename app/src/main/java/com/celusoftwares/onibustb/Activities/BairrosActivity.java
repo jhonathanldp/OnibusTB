@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,7 +25,7 @@ import adapter.AdapterRegioes;
  * que possuam horarios disponiveis
  */
 
-public class BairrosActivity extends Activity implements AdapterView.OnItemClickListener {
+public class BairrosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private AdapterRegioes adapterRegioes;
     private List<Regioes> listRegioes;
     private ListView listView;
@@ -34,6 +35,8 @@ public class BairrosActivity extends Activity implements AdapterView.OnItemClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.regioes);
+
+        setTitle(R.string.nome_titulo);
 
         listView = (ListView) findViewById(R.id.lista_regioes);
 

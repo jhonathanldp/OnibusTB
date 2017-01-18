@@ -1,11 +1,10 @@
 package com.celusoftwares.onibustb.Activities;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.celusoftwares.onibustb.R;
@@ -19,30 +18,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_principal);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getSupportActionBar().setElevation(0);
-        }
+        getSupportActionBar().setElevation(0);
         setTitle("");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_sobre, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    public void clickContato(MenuItem menu) {
+        startActivity(new Intent(this, ContatoActivity.class));
     }
 
     //inicia a tela regioes
-    public void telaRegioes(View view){
-        if (view.getId() == R.id.horarioUrbano){
-            Intent  intent = new Intent(this, BairrosActivity.class);
+    public void telaRegioes(View view) {
+        if (view.getId() == R.id.horarioUrbano) {
+            Intent intent = new Intent(this, BairrosActivity.class);
+            intent.putExtra("favorito", "false");
             startActivity(intent);
-        }
-        else if (view.getId() == R.id.horarioKlabin){
-            Intent  intent = new Intent(this, BairrosActivity.class);
+        } else if (view.getId() == R.id.horarioKlabin) {
+            Intent intent = new Intent(this, BairrosActivity.class);
+            intent.putExtra("favorito", "false");
             startActivity(intent);
-        }
-        else if (view.getId() == R.id.horarioIndustrial){
-            Intent  intent = new Intent(this, BairrosActivity.class);
+        } else if (view.getId() == R.id.horarioIndustrial) {
+            Intent intent = new Intent(this, BairrosActivity.class);
+            intent.putExtra("favorito", "false");
+            startActivity(intent);
+        } else if (view.getId() == R.id.botaoFavoritos) {
+            Intent intent = new Intent(this, HorariosActivity.class);
+            intent.putExtra("favorito", "true");
             startActivity(intent);
         }
 

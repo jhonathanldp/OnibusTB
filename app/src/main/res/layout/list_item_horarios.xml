@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="teste"
+            android:text="@string/teste"
             android:textSize="13sp" />
 
         <TextView
@@ -48,14 +48,14 @@
             android:id="@+id/horarioIda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="teste"
+            android:text="@string/teste"
             android:textSize="28sp"/>
 
         <TextView
             android:id="@+id/horarioVolta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="teste"
+            android:text="@string/teste"
             android:textSize="28sp"/>
 
         <View
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="teste"
+            android:text="@string/teste"
             android:textSize="13sp" />
 
     </LinearLayout>
