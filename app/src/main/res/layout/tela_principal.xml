@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
         android:gravity="center"
         android:background="@drawable/imagem_principal"
         android:orientation="vertical">
@@ -43,6 +43,7 @@
         android:orientation="vertical">
 
         <ImageButton
+            android:id="@+id/botaoFavoritos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -51,7 +52,8 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/botao_estilo_redondo"
             android:contentDescription="@string/estrela_favoritos"
-            android:src="@drawable/ic_star_white_48dp" />
+            android:src="@drawable/ic_star_white_48dp"
+            android:onClick="telaRegioes"/>
 
         <Button
             android:id="@+id/horarioUrbano"
@@ -80,6 +82,7 @@
             android:drawableRight="@drawable/ic_klabin_logo"
             android:text="@string/horarios_klabin"
             android:textAlignment="center"
+            android:onClick="telaRegioes"
             android:textSize="20sp" />
 
         <Button
@@ -93,6 +96,7 @@
             android:drawableEnd="@drawable/ic_work_black_48dp"
             android:drawableRight="@drawable/ic_work_black_48dp"
             android:text="@string/horarios_industriais"
+            android:onClick="telaRegioes"
             android:textAlignment="center"
             android:textSize="20sp" />
     </LinearLayout>

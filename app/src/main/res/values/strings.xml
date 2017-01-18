@@ -10,7 +10,15 @@
     <string name="centro">CENTRO</string>
     <string name="nome_titulo">Ônibus TB</string>
     <string name="sobre">Sobre</string>
-
+    <string name="teste">teste</string>
+    <string name="descricao_sobre">Feito com amor, carinho e Java :)</string>
+    <string name="criador">Criado por Jhonathan Lopes de Paula</string>
+    <string name="e_mail">e-mail</string>
+    <string name="git_button">git button</string>
+    <string name="compartilhe">Compartilhe!</string>
+    <string name="feedback">Achou um Bug? Tem sugestões? Use os botões de contato acima!</string>
+    <string name="titulo_dialog">Adicionar aos Favoritos</string>
+    <string name="descricao_dialog">Gostaria de adicionar esse horário aos Favoritos?</string>
     <string-array name="selecaoTipoHorario">
         <item>Dias úteis</item>
         <item>Sábados</item>
