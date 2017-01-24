@@ -22,6 +22,7 @@ import java.util.List;
 import Background.CarregadorDeHorarios;
 import BancoDeDados.DataBase;
 import Models.Horario;
+import Models.TipoHorario;
 import adapter.AdapterHorarios;
 
 /**
@@ -29,6 +30,7 @@ import adapter.AdapterHorarios;
  */
 
 public class HorariosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
     private DataBase dataBase;
     private AdapterHorarios adapterHorarios;
     private List<Horario> horarioList;
@@ -39,6 +41,7 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
     private ProgressBar progressBar;
     private CarregadorDeHorarios carregadorDeHorarios;
     private ContentValues contentValues;
+    private String tipoHorarioSelecionado;
 
 
     @Override
@@ -67,12 +70,38 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
 
         String favoritoPress = getIntent().getStringExtra("favorito");
 
+        contentValues.put("parametroTipoHorario", "1");
+
+        // Pega do usuario a seleção do comboBox
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tipoHorarioSelecionado = spinner.getSelectedItem().toString();
+                if (tipoHorarioSelecionado.equals("Dias úteis")){
+                    contentValues.put("parametroTipoHorario", "1");
+                }
+                else if(tipoHorarioSelecionado.equals("Sábados")){
+                    contentValues.put("parametroTipoHorario", "6");
+                }
+                else if(tipoHorarioSelecionado.equals("Domingos/Feriados")) {
+                    contentValues.put("parametroTipoHorario", "7");
+                }
+
+                recarregarItens();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                spinner.setSelection(1);
+                contentValues.put("parametroTipoHorario", "7");
+            }
+        });
+
         if ("true".equals(favoritoPress)) {
-            contentValues.put("parametro", "1");
-            contentValues.put("collum", "favorito");
+            contentValues.put("favorito", true);
+            spinner.setVisibility(View.GONE);
         } else {
-            contentValues.put("parametro", getIntent().getStringExtra("id_regiao"));
-            contentValues.put("collum", "id_regiao");
+            contentValues.put("favorito", false);
+            contentValues.put("parametroBairro", getIntent().getStringExtra("id_regiao"));
         }
 
         carregadorDeHorarios.execute(contentValues);
@@ -116,7 +145,6 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
         });
         alertDialog.create();
         alertDialog.show();
-        Log.v("Teste", "DialogoFav list click");
     }
 
     public void recarregarItens() {

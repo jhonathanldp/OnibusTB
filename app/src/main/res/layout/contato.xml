@@ -44,6 +44,8 @@
                 android:id="@+id/descricaoContato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:text="@string/descricao_sobre"
                 android:textAlignment="center"
                 android:textSize="25sp" />
@@ -74,7 +76,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/botao_estilo_contato"
                 android:contentDescription="@string/git_button"
-                android:src="@drawable/github" />
+                android:src="@drawable/github"
+                android:onClick="onImageClick"/>
 
             <ImageButton
                 android:id="@+id/mailContato"
@@ -84,7 +87,8 @@
                 android:layout_marginStart="10dp"
                 android:background="@drawable/botao_estilo_contato"
                 android:contentDescription="@string/e_mail"
-                android:src="@drawable/ic_mail_black_48dp" />
+                android:src="@drawable/ic_mail_black_48dp"
+                android:onClick="onImageClick"/>
         </LinearLayout>
 
         <LinearLayout
@@ -121,7 +125,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/botao_estilo_contato"
                 android:contentDescription="@string/e_mail"
-                android:src="@drawable/ic_favorite_black_48dp" />
+                android:src="@drawable/ic_favorite_black_48dp"
+                android:onClick="onImageClick"/>
 
             <TextView
                 android:id="@+id/descricaoCompartilhe"
