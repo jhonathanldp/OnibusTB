@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.celusoftwares.onibustb.R;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsConstants;
+import com.facebook.appevents.AppEventsLogger;
 
 /**
  * Created by jhona on 27/12/2016.
@@ -17,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(getApplication());
+
         setContentView(R.layout.tela_principal);
         getSupportActionBar().setElevation(0);
         setTitle("");

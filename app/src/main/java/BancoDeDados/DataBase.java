@@ -13,10 +13,12 @@ import java.util.List;
 
 import Models.Horario;
 import Models.Regioes;
+import Models.TipoHorario;
 
 /**
  * Created by jhona on 30/12/2016.
  * Responsavel por carregar os dados do Banco SQLite3
+ * O banco fica localizado na pasta assets
  */
 
 public class DataBase extends SQLiteAssetHelper {
@@ -51,7 +53,7 @@ public class DataBase extends SQLiteAssetHelper {
     }
 
     public List<Regioes> listarRegioes() {
-        Regioes regioes = null;
+        Regioes regioes;
         List<Regioes> listRegioes = new ArrayList<>();
         openDatabase();
         Cursor cursor = mDatabase.rawQuery("SELECT * FROM BAIRROS", null);
@@ -96,32 +98,78 @@ public class DataBase extends SQLiteAssetHelper {
 
     }
 
-    public List<Horario> listarHorarios(String[] argumentos, String collumName) {
-        Horario horario = null;
+    public List<Horario> listarHorarios(String[] argumentos) {
+        Horario horario;
         List<Horario> horarioList = new ArrayList<>();
         openDatabase();
-        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao AND h." + collumName + " = ?";
-        String[] selectionArgs = {"true"};
+
+        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao AND h.id_regiao = ?" +
+                "AND h.id_tipoHorario = ?";
+
         Cursor cursor = mDatabase.rawQuery(sql, argumentos);
         cursor.moveToFirst();
-
-        if (cursor.getCount() == 0) {
-            Log.println(Log.ERROR, "dados", "teste342432");
-        }
 
         while (!cursor.isAfterLast()) {
             horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getString(3),
                     cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getString(8));
 
             horarioList.add(horario);
-
-            Log.println(Log.INFO, "dados", cursor.getString(7));
             cursor.moveToNext();
         }
+
+        cursor.close();
+
+        return horarioList;
+    }
+
+    public List<Horario> listarFavoritos(){
+        Horario horario;
+        List<Horario> horarioList = new ArrayList<>();
+        openDatabase();
+
+        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao AND h.favorito = ?";
+        String args[] = {"1"}; // No SQLite boolean é validado por 1 para true e 0 para false
+
+        Cursor cursor = mDatabase.rawQuery(sql, args);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getString(3),
+                    cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getString(8));
+
+            horarioList.add(horario);
+            cursor.moveToNext();
+        }
+
         cursor.close();
         closeDatabase();
 
         return horarioList;
+    }
+
+    public List<TipoHorario> listarTipoHorario(){
+        List<TipoHorario> tipoHorarioList = new ArrayList<>();
+        TipoHorario tipoHorario;
+
+        openDatabase();
+
+        String sql = "SELECT * FROM TIPODEHORARIO";
+
+        Cursor cursor = mDatabase.rawQuery(sql, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            tipoHorario = new TipoHorario(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+
+            tipoHorarioList.add(tipoHorario);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        closeDatabase();
+
+        return tipoHorarioList;
 
     }
+
 }

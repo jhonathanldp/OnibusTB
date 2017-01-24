@@ -19,6 +19,7 @@
     <string name="feedback">Achou um Bug? Tem sugestões? Use os botões de contato acima!</string>
     <string name="titulo_dialog">Adicionar aos Favoritos</string>
     <string name="descricao_dialog">Gostaria de adicionar esse horário aos Favoritos?</string>
+    <string name="facebook_app_id">459451874225045</string>
     <string-array name="selecaoTipoHorario">
         <item>Dias úteis</item>
         <item>Sábados</item>
