@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -29,6 +32,7 @@ public class BairrosActivity extends AppCompatActivity implements AdapterView.On
     private AdapterRegioes adapterRegioes;
     private List<Regioes> listRegioes;
     private ListView listView;
+    private Intent intent;
 
 
     @Override
@@ -42,6 +46,8 @@ public class BairrosActivity extends AppCompatActivity implements AdapterView.On
 
         new CarregarConteudo(this).execute();
 
+        this.registerForContextMenu(listView);
+
         listView.setOnItemClickListener(this);
 
     }
@@ -49,9 +55,31 @@ public class BairrosActivity extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Regioes regioes = (Regioes) listView.getItemAtPosition(position);
-        Intent intent = new Intent(this, HorariosActivity.class);
+        intent = new Intent(this, HorariosActivity.class);
         intent.putExtra("id_regiao", String.valueOf(regioes.getId()));
-        startActivity(intent);
+        view.showContextMenu();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_regioes, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.horario_ida:
+                intent.putExtra("modoHorario", false);
+                startActivity(intent);
+                break;
+            case R.id.horario_volta:
+                intent.putExtra("modoHorario", true);
+                startActivity(intent);
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 
     private class CarregarConteudo extends AsyncTask<Void, Integer, List<Regioes>> {

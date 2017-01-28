@@ -110,7 +110,8 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
 
     public void callbackCarregarHorarios(List<Horario> result) {
         horarioList = result;
-        adapterHorarios = new AdapterHorarios(this, horarioList);
+        boolean modoHorario = getIntent().getBooleanExtra("modoHorario", false);
+        adapterHorarios = new AdapterHorarios(this, horarioList, modoHorario);
 
         if (listView.getCount() != 0) {
             adapterHorarios.notifyDataSetChanged();

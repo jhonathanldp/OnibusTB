@@ -8,30 +8,22 @@ public class Horario {
 
     private int id_horario;
     private boolean isFavorite;
-    private String horario_ida;
-    private String horario_volta;
+    private String horario;
     private int id_regiao;
     private int id_tipoHorario;
     private int id_linha;
     private String regiao_nome;
+    private String  infoAdicional;
 
-    public Horario(int id_horario, boolean isFavorite, String horario_ida, String horario_volta, int id_regiao, int id_tipoHorario, int id_linha, String regiao_nome) {
+    public Horario(int id_horario, boolean isFavorite, String horario, int id_regiao, int id_tipoHorario, int id_linha, String regiao_nome, String infoAdicional) {
         this.id_horario = id_horario;
         this.isFavorite = isFavorite;
-        this.horario_ida = horario_ida;
-        this.horario_volta = horario_volta;
+        this.horario = horario;
         this.id_regiao = id_regiao;
         this.id_tipoHorario = id_tipoHorario;
         this.id_linha = id_linha;
         this.regiao_nome = regiao_nome;
-    }
-
-    public String getRegiao_nome() {
-        return regiao_nome;
-    }
-
-    public void setRegiao_nome(String regiao_nome) {
-        this.regiao_nome = regiao_nome;
+        this.infoAdicional = infoAdicional;
     }
 
     public int getId_horario() {
@@ -50,20 +42,12 @@ public class Horario {
         isFavorite = favorite;
     }
 
-    public String getHorario_ida() {
-        return horario_ida;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setHorario_ida(String horario_ida) {
-        this.horario_ida = horario_ida;
-    }
-
-    public String getHorario_volta() {
-        return horario_volta;
-    }
-
-    public void setHorario_volta(String horario_volta) {
-        this.horario_volta = horario_volta;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
     public int getId_regiao() {
@@ -88,5 +72,21 @@ public class Horario {
 
     public void setId_linha(int id_linha) {
         this.id_linha = id_linha;
+    }
+
+    public String getRegiao_nome() {
+        return regiao_nome;
+    }
+
+    public void setRegiao_nome(String regiao_nome) {
+        this.regiao_nome = regiao_nome;
+    }
+
+    public String getInfoAdicional() {
+        return infoAdicional;
+    }
+
+    public void setInfoAdicional(String infoAdicional) {
+        this.infoAdicional = infoAdicional;
     }
 }

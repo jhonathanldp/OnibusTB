@@ -3,89 +3,82 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/text"
-    android:orientation="horizontal"
+    android:baselineAligned="false"
+    android:orientation="vertical"
     android:paddingBottom="5dp"
     android:paddingEnd="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingStart="10dp"
-    android:paddingTop="5dp"
-    android:baselineAligned="false">
+    android:paddingTop="5dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="0.2"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/regiaoNome"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
             android:gravity="center"
-            android:text="@string/teste"
-            android:textSize="13sp" />
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/regiaoNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="@string/teste"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/regiaoNome2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/centro"
+                android:textSize="13sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/horario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/teste"
+                android:textSize="28sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:id="@+id/corLinha"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"></View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
         <TextView
+            android:id="@+id/rota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:text="@string/centro"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="0.6"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/horarioIda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/teste"
-            android:textSize="28sp"/>
-
-        <TextView
-            android:id="@+id/horarioVolta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/teste"
-            android:textSize="28sp"/>
-
-        <View
-            android:id="@+id/corLinha"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorPrimaryDark"></View>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_weight="0.2"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/centro"
             android:layout_marginBottom="5dp"
+            android:textAlignment="center"
             android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/regiaoNomeVolta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/teste"
-            android:textSize="13sp" />
-
     </LinearLayout>
 </LinearLayout>

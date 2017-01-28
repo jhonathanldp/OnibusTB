@@ -13,6 +13,7 @@
         android:id="@+id/barraProgressoHorario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         style="@style/Widget.AppCompat.ProgressBar"/>
     <ListView
         android:id="@+id/lista_horarios"

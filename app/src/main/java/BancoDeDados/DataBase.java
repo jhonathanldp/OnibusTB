@@ -30,6 +30,7 @@ public class DataBase extends SQLiteAssetHelper {
     public DataBase(Context context) {
         super(context, DBNOME, null, DBVERSION);
         this.mContext = context;
+        setForcedUpgrade();
     }
 
 
@@ -39,10 +40,9 @@ public class DataBase extends SQLiteAssetHelper {
     }
 
     public void openDatabase() {
-        String dbPath = mContext.getDatabasePath(DBNOME).getPath();
-        if (mDatabase != null && mDatabase.isOpen()) {
+        /*if (mDatabase != null && mDatabase.isOpen()) {
             return;
-        }
+        }*/
         mDatabase = getReadableDatabase();
     }
 
@@ -77,11 +77,9 @@ public class DataBase extends SQLiteAssetHelper {
         Cursor cursor = mDatabase.rawQuery(sql, args);
         cursor.moveToFirst();
         boolean isFavorite;
-        if (cursor.getInt(0) != 0) {
-            isFavorite = true;
-        } else {
-            isFavorite = false;
-        }
+
+        isFavorite = cursor.getInt(0) != 0;
+
         cursor.close();
         ContentValues contentValues = new ContentValues();
         if (!isFavorite) {
@@ -103,15 +101,16 @@ public class DataBase extends SQLiteAssetHelper {
         List<Horario> horarioList = new ArrayList<>();
         openDatabase();
 
-        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao AND h.id_regiao = ?" +
+        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao JOIN LINHAS l ON h.id_linhas = l.id_linhas " +
+                "AND h.id_regiao = ? " +
                 "AND h.id_tipoHorario = ?";
 
         Cursor cursor = mDatabase.rawQuery(sql, argumentos);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getString(3),
-                    cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getString(8));
+            horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getInt(3),
+                    cursor.getInt(4), cursor.getInt(5), cursor.getString(7), cursor.getString(9));
 
             horarioList.add(horario);
             cursor.moveToNext();
@@ -127,15 +126,16 @@ public class DataBase extends SQLiteAssetHelper {
         List<Horario> horarioList = new ArrayList<>();
         openDatabase();
 
-        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao AND h.favorito = ?";
+        String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao JOIN LINHAS l ON h.id_linhas = l.id_linhas" +
+                " AND h.favorito = ?";
         String args[] = {"1"}; // No SQLite boolean é validado por 1 para true e 0 para false
 
         Cursor cursor = mDatabase.rawQuery(sql, args);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getString(3),
-                    cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getString(8));
+            horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getInt(3),
+                    cursor.getInt(4), cursor.getInt(5), cursor.getString(7), cursor.getString(9));
 
             horarioList.add(horario);
             cursor.moveToNext();
