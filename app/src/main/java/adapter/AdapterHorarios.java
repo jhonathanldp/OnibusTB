@@ -20,10 +20,12 @@ import Models.Horario;
 public class AdapterHorarios extends BaseAdapter {
     private Context mContext;
     private List<Horario> mHorarioList;
+    private boolean horariosVolta;
 
-    public AdapterHorarios(Context mContext, List<Horario> mHorarioList) {
+    public AdapterHorarios(Context mContext, List<Horario> mHorarioList, boolean horariosVolta) {
         this.mContext = mContext;
         this.mHorarioList = mHorarioList;
+        this.horariosVolta = horariosVolta;
     }
 
     @Override
@@ -48,16 +50,27 @@ public class AdapterHorarios extends BaseAdapter {
         TextView textView = (TextView) v.findViewById(R.id.regiaoNome);
         textView.setText(mHorarioList.get(position).getRegiao_nome());
 
-        textView = (TextView) v.findViewById(R.id.horarioIda);
-        textView.setText(mHorarioList.get(position).getHorario_ida());
+        textView = (TextView) v.findViewById(R.id.horario);
+        textView.setText(mHorarioList.get(position).getHorario());
+        if (horariosVolta){
+            textView = (TextView) v.findViewById(R.id.regiaoNome2);
+            textView.setText(mHorarioList.get(position).getRegiao_nome());
 
-        textView = (TextView) v.findViewById(R.id.horarioVolta);
-        textView.setText(mHorarioList.get(position).getHorario_volta());
+            textView = (TextView) v.findViewById(R.id.regiaoNome);
+            textView.setText(R.string.centro);
+        }
+        else if (!horariosVolta){
+            textView = (TextView) v.findViewById(R.id.regiaoNome);
+            textView.setText(mHorarioList.get(position).getRegiao_nome());
 
-        textView = (TextView) v.findViewById(R.id.regiaoNomeVolta);
-        textView.setText(mHorarioList.get(position).getRegiao_nome());
+            textView = (TextView) v.findViewById(R.id.regiaoNome2);
+            textView.setText(R.string.centro);
+        }
 
-        View colorView = (View) v.findViewById(R.id.corLinha);
+        textView = (TextView) v.findViewById(R.id.rota);
+        textView.setText(mHorarioList.get(position).getInfoAdicional());
+
+        View colorView = v.findViewById(R.id.corLinha);
         if(mHorarioList.get(position).getId_linha() == 1){
             colorView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.limao));
         }
