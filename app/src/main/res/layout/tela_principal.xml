@@ -68,7 +68,8 @@
             android:onClick="telaRegioes"
             android:text="@string/horario_urbano"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/preto"/>
 
         <Button
             android:id="@+id/horarioKlabin"
@@ -83,7 +84,8 @@
             android:text="@string/horarios_klabin"
             android:textAlignment="center"
             android:onClick="telaRegioes"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/preto"/>
 
         <Button
             android:id="@+id/horarioIndustrial"
@@ -98,6 +100,7 @@
             android:text="@string/horarios_industriais"
             android:onClick="telaRegioes"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/preto"/>
     </LinearLayout>
 </LinearLayout>

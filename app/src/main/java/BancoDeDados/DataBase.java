@@ -25,7 +25,7 @@ public class DataBase extends SQLiteAssetHelper {
     private static final String DBNOME = "onibustb.db";
     private Context mContext;
     private SQLiteDatabase mDatabase;
-    private static final int DBVERSION = 1;
+    private static final int DBVERSION = 2;
 
     public DataBase(Context context) {
         super(context, DBNOME, null, DBVERSION);

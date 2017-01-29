@@ -5,5 +5,5 @@
         android:id="@+id/itemSobre"
         android:title="@string/sobre"
         android:onClick="clickContato"
-        app:showAsAction="always"></item>
+        app:showAsAction="ifRoom"></item>
 </menu>
