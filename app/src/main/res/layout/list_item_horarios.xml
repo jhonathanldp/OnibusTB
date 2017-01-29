@@ -5,12 +5,12 @@
     android:background="@color/text"
     android:baselineAligned="false"
     android:orientation="vertical"
-    android:paddingBottom="5dp"
+    android:paddingBottom="10dp"
     android:paddingEnd="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingStart="10dp"
-    android:paddingTop="5dp">
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,9 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/preto"
                 android:gravity="center"
-                android:text="@string/teste"
-                android:textSize="13sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/regiaoNome2"
@@ -39,8 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="@string/centro"
-                android:textSize="13sp" />
+                android:textColor="@color/preto"
+                android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/teste"
+                android:textColor="@color/preto"
                 android:textSize="28sp" />
 
         </LinearLayout>
@@ -68,7 +68,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -79,6 +79,7 @@
             android:gravity="center"
             android:layout_marginBottom="5dp"
             android:textAlignment="center"
-            android:textSize="13sp" />
+            android:textColor="@color/preto"
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import com.celusoftwares.onibustb.R;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Background.CarregadorDeHorarios;
@@ -57,8 +60,9 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
         listView = (ListView) findViewById(R.id.lista_horarios);
         spinner = (Spinner) findViewById(R.id.selectTipoHorario);
 
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.selecaoTipoHorario, R.layout.list_item_spinner);
-        arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+        List<String> listSpinner = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.selecaoTipoHorario)));
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.list_item_spinner, listSpinner);
 
         spinner.setAdapter(arrayAdapter);
 
@@ -77,14 +81,16 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 tipoHorarioSelecionado = spinner.getSelectedItem().toString();
-                if (tipoHorarioSelecionado.equals("Dias úteis")){
-                    contentValues.put("parametroTipoHorario", "1");
-                }
-                else if(tipoHorarioSelecionado.equals("Sábados")){
-                    contentValues.put("parametroTipoHorario", "6");
-                }
-                else if(tipoHorarioSelecionado.equals("Domingos/Feriados")) {
-                    contentValues.put("parametroTipoHorario", "7");
+                switch (tipoHorarioSelecionado) {
+                    case "Dias úteis":
+                        contentValues.put("parametroTipoHorario", "1");
+                        break;
+                    case "Sábados":
+                        contentValues.put("parametroTipoHorario", "6");
+                        break;
+                    case "Domingos/Feriados":
+                        contentValues.put("parametroTipoHorario", "7");
+                        break;
                 }
 
                 recarregarItens();
