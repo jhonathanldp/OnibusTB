@@ -25,7 +25,7 @@ public class DataBase extends SQLiteAssetHelper {
     private static final String DBNOME = "onibustb.db";
     private Context mContext;
     private SQLiteDatabase mDatabase;
-    private static final int DBVERSION = 2;
+    private static final int DBVERSION = 5;
 
     public DataBase(Context context) {
         super(context, DBNOME, null, DBVERSION);
@@ -43,7 +43,7 @@ public class DataBase extends SQLiteAssetHelper {
         /*if (mDatabase != null && mDatabase.isOpen()) {
             return;
         }*/
-        mDatabase = getReadableDatabase();
+        mDatabase = getWritableDatabase();
     }
 
     public void closeDatabase() {
@@ -103,14 +103,16 @@ public class DataBase extends SQLiteAssetHelper {
 
         String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao JOIN LINHAS l ON h.id_linhas = l.id_linhas " +
                 "AND h.id_regiao = ? " +
-                "AND h.id_tipoHorario = ?";
+                "AND h.id_tipoHorario = ? " +
+                "AND h.retorno = ?";
 
         Cursor cursor = mDatabase.rawQuery(sql, argumentos);
         cursor.moveToFirst();
 
+        //Verifique a estrutura do Banco para entender essa parte do código
         while (!cursor.isAfterLast()) {
             horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getInt(3),
-                    cursor.getInt(4), cursor.getInt(5), cursor.getString(7), cursor.getString(9));
+                    cursor.getInt(4), cursor.getInt(5), cursor.getString(8), cursor.getString(10));
 
             horarioList.add(horario);
             cursor.moveToNext();
@@ -133,9 +135,10 @@ public class DataBase extends SQLiteAssetHelper {
         Cursor cursor = mDatabase.rawQuery(sql, args);
         cursor.moveToFirst();
 
+        //Verifique a estrutura do Banco para entender essa parte do código
         while (!cursor.isAfterLast()) {
             horario = new Horario(cursor.getInt(0), cursor.getInt(1) != 0, cursor.getString(2), cursor.getInt(3),
-                    cursor.getInt(4), cursor.getInt(5), cursor.getString(7), cursor.getString(9));
+                    cursor.getInt(4), cursor.getInt(5), cursor.getString(8), cursor.getString(10));
 
             horarioList.add(horario);
             cursor.moveToNext();

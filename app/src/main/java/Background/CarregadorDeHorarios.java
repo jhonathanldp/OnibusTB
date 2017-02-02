@@ -44,7 +44,8 @@ public class CarregadorDeHorarios extends AsyncTask<ContentValues, Integer, List
     protected List<Horario> doInBackground(ContentValues... params) {
         horarioList = new ArrayList<>();
         publishProgress(25);
-        String[] args = {params[0].getAsString("parametroBairro"), params[0].getAsString("parametroTipoHorario")};
+        String[] args = {params[0].getAsString("parametroBairro"), params[0].getAsString("parametroTipoHorario"),
+                params[0].getAsString("isRetorno")};
         publishProgress(50);
 
         if (params[0].getAsBoolean("favorito")){
