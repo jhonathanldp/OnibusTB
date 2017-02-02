@@ -108,6 +108,7 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
         } else {
             contentValues.put("favorito", false);
             contentValues.put("parametroBairro", getIntent().getStringExtra("id_regiao"));
+            contentValues.put("isRetorno", getIntent().getBooleanExtra("modoHorario", false));
         }
 
         carregadorDeHorarios.execute(contentValues);
