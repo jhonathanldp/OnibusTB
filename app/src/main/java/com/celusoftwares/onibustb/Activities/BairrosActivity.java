@@ -30,7 +30,6 @@ import adapter.AdapterRegioes;
 
 public class BairrosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private AdapterRegioes adapterRegioes;
-    private List<Regioes> listRegioes;
     private ListView listView;
     private Intent intent;
 
@@ -87,7 +86,7 @@ public class BairrosActivity extends AppCompatActivity implements AdapterView.On
         private DataBase dataBase;
         private Context context;
 
-        public CarregarConteudo(Context context) {
+        CarregarConteudo(Context context) {
             this.context = context;
         }
 
@@ -102,7 +101,7 @@ public class BairrosActivity extends AppCompatActivity implements AdapterView.On
         @Override
         protected List<Regioes> doInBackground(Void... params) {
             publishProgress(25);
-            listRegioes = dataBase.listarRegioes();
+            List<Regioes> listRegioes = dataBase.listarRegioes();
             publishProgress(75);
             adapterRegioes = new AdapterRegioes(context, listRegioes);
             publishProgress(100);

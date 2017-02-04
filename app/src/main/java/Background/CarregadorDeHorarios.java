@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.celusoftwares.onibustb.Activities.HorariosActivity;
-import com.celusoftwares.onibustb.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +14,7 @@ import BancoDeDados.DataBase;
 import Models.Horario;
 
 /**
- * Created by jhona on 17/01/2017.
+ * Created by Jhonathan on 17/01/2017.
  */
 
 public class CarregadorDeHorarios extends AsyncTask<ContentValues, Integer, List<Horario>> {
@@ -24,7 +22,6 @@ public class CarregadorDeHorarios extends AsyncTask<ContentValues, Integer, List
     private DataBase dataBase;
     private Context context;
     private HorariosActivity horariosActivity;
-    private List<Horario> horarioList;
 
     public CarregadorDeHorarios(ProgressBar progressBar, DataBase dataBase, Context context, HorariosActivity horariosActivity) {
         this.progressBar = progressBar;
@@ -42,7 +39,7 @@ public class CarregadorDeHorarios extends AsyncTask<ContentValues, Integer, List
 
     @Override
     protected List<Horario> doInBackground(ContentValues... params) {
-        horarioList = new ArrayList<>();
+        List<Horario> horarioList = new ArrayList<>();
         publishProgress(25);
         String[] args = {params[0].getAsString("parametroBairro"), params[0].getAsString("parametroTipoHorario"),
                 params[0].getAsString("isRetorno")};

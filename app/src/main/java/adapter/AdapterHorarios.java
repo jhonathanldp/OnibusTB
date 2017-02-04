@@ -45,39 +45,73 @@ public class AdapterHorarios extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = View.inflate(mContext, R.layout.list_item_horarios, null);
-
-        TextView textView = (TextView) v.findViewById(R.id.regiaoNome);
-        textView.setText(mHorarioList.get(position).getRegiao_nome());
-
-        textView = (TextView) v.findViewById(R.id.horario);
-        textView.setText(mHorarioList.get(position).getHorario());
-        if (horariosVolta){
-            textView = (TextView) v.findViewById(R.id.regiaoNome2);
-            textView.setText(mHorarioList.get(position).getRegiao_nome());
-
-            textView = (TextView) v.findViewById(R.id.regiaoNome);
-            textView.setText(R.string.centro);
-        }
-        else if (!horariosVolta){
-            textView = (TextView) v.findViewById(R.id.regiaoNome);
-            textView.setText(mHorarioList.get(position).getRegiao_nome());
-
-            textView = (TextView) v.findViewById(R.id.regiaoNome2);
-            textView.setText(R.string.centro);
+        View v;
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            v = View.inflate(mContext, R.layout.list_item_horarios, null);
+            viewHolder = new ViewHolder(v);
+            v.setTag(viewHolder);
+        } else {
+            v = convertView;
+            viewHolder = (ViewHolder) v.getTag();
         }
 
-        textView = (TextView) v.findViewById(R.id.rota);
-        textView.setText(mHorarioList.get(position).getInfoAdicional());
-
-        View colorView = v.findViewById(R.id.corLinha);
-        if(mHorarioList.get(position).getId_linha() == 1){
-            colorView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.limao));
+        viewHolder.horario.setText(mHorarioList.get(position).getHorario());
+        if (horariosVolta) {
+            viewHolder.nomeRegiaoRetorno.setText(mHorarioList.get(position).getRegiao_nome());
+            viewHolder.nomeRegiaoIda.setText(R.string.centro);
+        } else{
+            viewHolder.nomeRegiaoIda.setText(mHorarioList.get(position).getRegiao_nome());
+            viewHolder.nomeRegiaoRetorno.setText(R.string.centro);
         }
-        else if (mHorarioList.get(position).getId_linha() == 2){
-            colorView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.verdeClaro));
+
+        viewHolder.rota.setText(mHorarioList.get(position).getInfoAdicional());
+
+        if (mHorarioList.get(position).getId_linha() == 1) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.limao));
+        } else if (mHorarioList.get(position).getId_linha() == 2) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.verdeClaro));
+        } else if (mHorarioList.get(position).getId_linha() == 3) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccent));
+        } else if (mHorarioList.get(position).getId_linha() == 4) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
+        } else if (mHorarioList.get(position).getId_linha() == 5) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
+        } else if (mHorarioList.get(position).getId_linha() == 6) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.roxo));
+        } else if (mHorarioList.get(position).getId_linha() == 7) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.roxo_claro));
+        } else if (mHorarioList.get(position).getId_linha() == 8) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.azul_claro));
+        } else if (mHorarioList.get(position).getId_linha() == 9) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.cyan));
+        } else if (mHorarioList.get(position).getId_linha() == 10) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.cyan_escuro));
+        } else if (mHorarioList.get(position).getId_linha() == 11) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.ceu));
+        } else if (mHorarioList.get(position).getId_linha() == 12) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.marrom));
+        } else if (mHorarioList.get(position).getId_linha() == 13) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.pink));
         }
 
         return v;
+    }
+
+    private static class ViewHolder {
+        TextView nomeRegiaoIda;
+        TextView nomeRegiaoRetorno;
+        TextView horario;
+        TextView rota;
+        View corLinha;
+
+        ViewHolder(View view) {
+            nomeRegiaoIda = (TextView) view.findViewById(R.id.regiaoNome);
+            nomeRegiaoRetorno = (TextView) view.findViewById(R.id.regiaoNome2);
+            horario = (TextView) view.findViewById(R.id.horario);
+            rota = (TextView) view.findViewById(R.id.rota);
+            corLinha = view.findViewById(R.id.corLinha);
+        }
+
     }
 }

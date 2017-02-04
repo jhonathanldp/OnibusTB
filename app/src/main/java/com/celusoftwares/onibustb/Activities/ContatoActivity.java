@@ -1,16 +1,12 @@
 package com.celusoftwares.onibustb.Activities;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.celusoftwares.onibustb.R;
@@ -28,17 +24,23 @@ import com.facebook.share.widget.ShareDialog;
 public class ContatoActivity extends AppCompatActivity {
     private final String [] e_mail = {"jhonathanldp@outlook.com"};
     private final String subject = "Sugestões/Criticas";
-    private final String url = "www.google.com.br";
-    private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setElevation(0);
+        }
+
+        setTitle("Sobre");
+
         setContentView(R.layout.contato);
 
         shareDialog = new ShareDialog(this);
-        callbackManager = CallbackManager.Factory.create();
+        CallbackManager callbackManager = CallbackManager.Factory.create();
         shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
             @Override
             public void onSuccess(Sharer.Result result) {
@@ -55,10 +57,6 @@ public class ContatoActivity extends AppCompatActivity {
                 Toast.makeText(ContatoActivity.this, "Aparentemente você não possui, o facebook instalado", Toast.LENGTH_SHORT).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setElevation(0);
-
-        setTitle("Sobre");
     }
 
     public void onImageClick(View view){
@@ -78,6 +76,7 @@ public class ContatoActivity extends AppCompatActivity {
         }
         else if (view.getId() == R.id.compartilheCoracao){
             Log.v("Facebook", "clickado");
+            String url = "www.google.com.br";
             ShareLinkContent shareLinkContent = new ShareLinkContent.Builder().setContentUrl(Uri.parse(url)).build();
             shareDialog.show(shareLinkContent);
         }
