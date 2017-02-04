@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import com.celusoftwares.onibustb.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +23,6 @@ import java.util.List;
 import Background.CarregadorDeHorarios;
 import BancoDeDados.DataBase;
 import Models.Horario;
-import Models.TipoHorario;
 import adapter.AdapterHorarios;
 
 /**
@@ -35,7 +32,6 @@ import adapter.AdapterHorarios;
 public class HorariosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private DataBase dataBase;
-    private AdapterHorarios adapterHorarios;
     private List<Horario> horarioList;
     private ListView listView;
     private Spinner spinner;
@@ -118,7 +114,7 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
     public void callbackCarregarHorarios(List<Horario> result) {
         horarioList = result;
         boolean modoHorario = getIntent().getBooleanExtra("modoHorario", false);
-        adapterHorarios = new AdapterHorarios(this, horarioList, modoHorario);
+        AdapterHorarios adapterHorarios = new AdapterHorarios(this, horarioList, modoHorario);
 
         if (listView.getCount() != 0) {
             adapterHorarios.notifyDataSetChanged();

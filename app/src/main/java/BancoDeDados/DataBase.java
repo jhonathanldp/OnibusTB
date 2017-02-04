@@ -3,8 +3,8 @@ package BancoDeDados;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -23,13 +23,11 @@ import Models.TipoHorario;
 
 public class DataBase extends SQLiteAssetHelper {
     private static final String DBNOME = "onibustb.db";
-    private Context mContext;
-    private SQLiteDatabase mDatabase;
     private static final int DBVERSION = 5;
+    private SQLiteDatabase mDatabase;
 
     public DataBase(Context context) {
         super(context, DBNOME, null, DBVERSION);
-        this.mContext = context;
         setForcedUpgrade();
     }
 
@@ -39,20 +37,15 @@ public class DataBase extends SQLiteAssetHelper {
 
     }
 
-    public void openDatabase() {
-        /*if (mDatabase != null && mDatabase.isOpen()) {
-            return;
-        }*/
+    private void openDatabase() throws SQLiteAssetException {
         mDatabase = getWritableDatabase();
     }
 
-    public void closeDatabase() {
-        if (mDatabase != null) {
-            mDatabase.close();
-        }
+    private void closeDatabase() {
+        mDatabase.close();
     }
 
-    public List<Regioes> listarRegioes() {
+    public List<Regioes> listarRegioes() throws SQLException {
         Regioes regioes;
         List<Regioes> listRegioes = new ArrayList<>();
         openDatabase();
@@ -69,7 +62,7 @@ public class DataBase extends SQLiteAssetHelper {
         return listRegioes;
     }
 
-    public boolean adicionarFavoritoDAO(int idHorario) {
+    public boolean adicionarFavoritoDAO(int idHorario) throws SQLException {
         final String tbName = "HORARIOS";
         String sql = "SELECT favorito FROM HORARIOS WHERE id_horario = ?";
         String[] args = {String.valueOf(idHorario)};
@@ -87,7 +80,7 @@ public class DataBase extends SQLiteAssetHelper {
             mDatabase.update(tbName, contentValues, "id_horario = ?", args);
             mDatabase.close();
             return true;
-        } else{
+        } else {
             contentValues.put("favorito", 0);
             mDatabase.update(tbName, contentValues, "id_horario = ?", args);
             mDatabase.close();
@@ -96,7 +89,7 @@ public class DataBase extends SQLiteAssetHelper {
 
     }
 
-    public List<Horario> listarHorarios(String[] argumentos) {
+    public List<Horario> listarHorarios(String[] argumentos) throws SQLException {
         Horario horario;
         List<Horario> horarioList = new ArrayList<>();
         openDatabase();
@@ -123,7 +116,7 @@ public class DataBase extends SQLiteAssetHelper {
         return horarioList;
     }
 
-    public List<Horario> listarFavoritos(){
+    public List<Horario> listarFavoritos() {
         Horario horario;
         List<Horario> horarioList = new ArrayList<>();
         openDatabase();
@@ -150,7 +143,7 @@ public class DataBase extends SQLiteAssetHelper {
         return horarioList;
     }
 
-    public List<TipoHorario> listarTipoHorario(){
+    public List<TipoHorario> listarTipoHorario() {
         List<TipoHorario> tipoHorarioList = new ArrayList<>();
         TipoHorario tipoHorario;
 

@@ -2,6 +2,7 @@ package com.celusoftwares.onibustb.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,10 +24,13 @@ public class MainActivity extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(getApplication());
-
-        setContentView(R.layout.tela_principal);
-        getSupportActionBar().setElevation(0);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setElevation(0);
+        }
         setTitle("");
+        setContentView(R.layout.tela_principal);
+
     }
 
     @Override

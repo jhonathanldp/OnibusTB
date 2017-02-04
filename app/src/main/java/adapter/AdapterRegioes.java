@@ -42,8 +42,13 @@ public class AdapterRegioes extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        View v = View.inflate(mContext, R.layout.list_item_bairros, null);
+        View v;
+        if (convertView == null){
+            v = View.inflate(mContext, R.layout.list_item_bairros, null);
+        }
+        else {
+            v = convertView;
+        }
 
         TextView regiao = (TextView) v.findViewById(R.id.regiao);
         regiao.setText(mListaRegioes.get(position).getRegiao());
