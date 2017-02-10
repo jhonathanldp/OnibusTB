@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -23,7 +24,7 @@ import Models.TipoHorario;
 
 public class DataBase extends SQLiteAssetHelper {
     private static final String DBNOME = "onibustb.db";
-    private static final int DBVERSION = 5;
+    private static final int DBVERSION = 7;
     private SQLiteDatabase mDatabase;
 
     public DataBase(Context context) {
@@ -110,9 +111,10 @@ public class DataBase extends SQLiteAssetHelper {
             horarioList.add(horario);
             cursor.moveToNext();
         }
-
+        Log.d("teste", String.valueOf(cursor.getCount()));
         cursor.close();
-
+        Log.d("horairo", horarioList.get(horarioList.size() - 1).getHorario());
+        Log.d("horairo", String.valueOf(horarioList.size()));
         return horarioList;
     }
 

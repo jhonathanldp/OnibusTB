@@ -2,6 +2,7 @@ package adapter;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -66,6 +67,7 @@ public class AdapterHorarios extends BaseAdapter {
         }
 
         viewHolder.rota.setText(mHorarioList.get(position).getInfoAdicional());
+        //Log.d("horario", mHorarioList.get(position).getHorario());
 
         if (mHorarioList.get(position).getId_linha() == 1) {
             viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.limao));
