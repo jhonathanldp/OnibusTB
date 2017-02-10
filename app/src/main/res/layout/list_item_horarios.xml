@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/text"
-    android:baselineAligned="false"
     android:orientation="vertical"
     android:paddingBottom="20dp"
     android:paddingEnd="10dp"
@@ -15,8 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,7 +55,6 @@
                 android:gravity="center"
                 android:textColor="@color/preto"
                 android:textSize="28sp" />
-
         </LinearLayout>
     </LinearLayout>
     <View
