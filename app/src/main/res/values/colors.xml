@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Cores usadas no App -->
     <color name="colorPrimary">#FF5722</color>
     <color name="colorPrimaryDark">#E64A19</color>
-    <color name="colorAccent">#FFEB3B</color>
+    <color name="colorAccent">#FF5252</color>
     <color name="text">#FFFFFF</color>
     <color name="verdeClaro">#8BC34A</color>
     <color name="limao">#CDDC39</color>
@@ -16,4 +17,7 @@
     <color name="marrom">#795548</color>
     <color name="pink">#E91E63</color>
     <color name="transparent">#00FFFFFF</color>
+
+    <!-- Cores para o Slide Incial-->
+
 </resources>

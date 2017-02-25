@@ -7,9 +7,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:gravity="center"
+        android:layout_weight="1"
         android:background="@drawable/imagem_principal"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -37,23 +37,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="50dp"
+        android:layout_weight="1.2"
+        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/botaoFavoritos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/botao_estilo_redondo"
-            android:contentDescription="@string/estrela_favoritos"
-            android:src="@drawable/ic_star_white_48dp"
-            android:onClick="telaRegioes"/>
 
         <Button
             android:id="@+id/horarioUrbano"
@@ -68,39 +58,43 @@
             android:onClick="telaRegioes"
             android:text="@string/horario_urbano"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:textColor="@color/preto"/>
+            android:textColor="@color/preto"
+            android:textSize="20sp" />
 
         <Button
-            android:id="@+id/horarioKlabin"
+            android:id="@+id/botaoFavoritos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/botao_estilo"
-            android:drawableEnd="@drawable/ic_klabin_logo"
-            android:drawableRight="@drawable/ic_klabin_logo"
-            android:text="@string/horarios_klabin"
-            android:textAlignment="center"
+            android:drawableEnd="@drawable/ic_star_black_48dp"
+            android:drawableRight="@drawable/ic_star_black_48dp"
             android:onClick="telaRegioes"
-            android:textSize="20sp"
-            android:textColor="@color/preto"/>
-
-        <Button
-            android:id="@+id/horarioIndustrial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/botao_estilo"
-            android:drawableEnd="@drawable/ic_work_black_48dp"
-            android:drawableRight="@drawable/ic_work_black_48dp"
-            android:text="@string/horarios_industriais"
-            android:onClick="telaRegioes"
+            android:text="@string/favoritos"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:textColor="@color/preto"/>
+            android:textColor="@color/preto"
+            android:textSize="20sp" />
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/desc_main"
+            android:textAlignment="center"
+            android:textColor="@color/preto"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+    </RelativeLayout>
 </LinearLayout>

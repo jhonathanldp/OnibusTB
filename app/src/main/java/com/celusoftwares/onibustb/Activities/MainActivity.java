@@ -10,7 +10,6 @@ import android.view.View;
 
 import com.celusoftwares.onibustb.R;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 
 /**
@@ -46,14 +45,6 @@ public class MainActivity extends AppCompatActivity {
     //inicia a tela regioes
     public void telaRegioes(View view) {
         if (view.getId() == R.id.horarioUrbano) {
-            Intent intent = new Intent(this, BairrosActivity.class);
-            intent.putExtra("favorito", "false");
-            startActivity(intent);
-        } else if (view.getId() == R.id.horarioKlabin) {
-            Intent intent = new Intent(this, BairrosActivity.class);
-            intent.putExtra("favorito", "false");
-            startActivity(intent);
-        } else if (view.getId() == R.id.horarioIndustrial) {
             Intent intent = new Intent(this, BairrosActivity.class);
             intent.putExtra("favorito", "false");
             startActivity(intent);

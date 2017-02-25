@@ -12,7 +12,7 @@
     <string name="sobre">Sobre</string>
     <string name="teste">teste</string>
     <string name="descricao_sobre">Feito com amor, carinho e Java :)</string>
-    <string name="criador">Criado por Jhonathan Lopes de Paula</string>
+    <string name="criador">Criado por JhonathanLDP</string>
     <string name="e_mail">e-mail</string>
     <string name="git_button">git button</string>
     <string name="compartilhe">Compartilhe!</string>
@@ -22,6 +22,14 @@
     <string name="facebook_app_id">459451874225045</string>
     <string name="horarios_de_partida">Horários de partida</string>
     <string name="horarios_de_volta">Horários de volta</string>
+    <string name="descricao_slide_1">Bem Vindo ao Ônibus TB!</string>
+    <string name="descricao_slide2">Programe-se antes de sair de casa!</string>
+    <string name="descricacao_slide3">Ache facilmente seus horários, adicionando aos favoritos</string>
+    <string name="favoritos">FAVORITOS</string>
+    <string name="desc_main">NOTA: ESSE É UM APP TERCEIRO, E NÃO POSSUI NENHUM VINCULO COM EMPRESAS E/OU ORGÃOS PUBLICOS.</string>
+    <string name="proximo">Avançar</string>
+    <string name="pular">Pular</string>
+    <string name="entendi">Ok, Entendi</string>
     <string-array name="selecaoTipoHorario">
         <item>Dias úteis</item>
         <item>Sábados</item>
