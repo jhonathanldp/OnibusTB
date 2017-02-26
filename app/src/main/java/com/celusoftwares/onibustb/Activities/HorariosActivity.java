@@ -1,11 +1,9 @@
 package com.celusoftwares.onibustb.Activities;
 
+import android.app.DialogFragment;
 import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +20,7 @@ import java.util.List;
 
 import Background.CarregadorDeHorarios;
 import BancoDeDados.DataBase;
+import Fragment.CustomDialogFragment;
 import Models.Horario;
 import adapter.AdapterHorarios;
 
@@ -29,18 +28,18 @@ import adapter.AdapterHorarios;
  * Created by jhona on 08/01/2017.
  */
 
-public class HorariosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class HorariosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, CustomDialogFragment.NoticeDialogListener {
 
     private DataBase dataBase;
     private List<Horario> horarioList;
     private ListView listView;
     private Spinner spinner;
-    private AlertDialog.Builder alertDialog;
     private int idHorario;
     private ProgressBar progressBar;
     private CarregadorDeHorarios carregadorDeHorarios;
     private ContentValues contentValues;
     private String tipoHorarioSelecionado;
+    private CustomDialogFragment customDialogFragment;
 
 
     @Override
@@ -50,7 +49,6 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
 
         setTitle(R.string.nome_titulo);
 
-        alertDialog = new AlertDialog.Builder(this);
 
         dataBase = new DataBase(this);
         listView = (ListView) findViewById(R.id.lista_horarios);
@@ -111,6 +109,11 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+    public void abrirDialogo(){
+        customDialogFragment = new CustomDialogFragment();
+        customDialogFragment.show(getFragmentManager(),"DialogFavoritoAdd");
+    }
+
     public void callbackCarregarHorarios(List<Horario> result) {
         horarioList = result;
         boolean modoHorario = getIntent().getBooleanExtra("modoHorario", false);
@@ -132,27 +135,25 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
             Toast.makeText(this, "Esse Horario acaba de ser adicionado aos Favoritos!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Esse Horario acaba de ser removido dos Favoritos!", Toast.LENGTH_SHORT).show();
+            recarregarItens();
         }
+        customDialogFragment.dismiss();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        LayoutInflater layoutInflater = getLayoutInflater();
         idHorario = horarioList.get(position).getId_horario();
-        alertDialog.setView(layoutInflater.inflate(R.layout.dialog_favorito, parent, false));
-        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                recarregarItens();
-                dialog.dismiss();
-            }
-        });
-        alertDialog.create();
-        alertDialog.show();
+        abrirDialogo();
     }
 
     public void recarregarItens() {
         carregadorDeHorarios = new CarregadorDeHorarios(progressBar, dataBase, this, this);
         carregadorDeHorarios.execute(contentValues);
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        recarregarItens();
+        dialog.dismiss();
     }
 }
