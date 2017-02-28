@@ -23,7 +23,6 @@ public class BemvindoSlideActivity extends AppCompatActivity {
 
     private PrefManager prefManager;
     private ViewPager viewPager;
-    private PagerAdapter pagerAdapter;
     private int[] layouts;
     private Button pular;
     private Button proximo;
@@ -53,7 +52,7 @@ public class BemvindoSlideActivity extends AppCompatActivity {
         proximo = (Button) findViewById(R.id.btn_proximo);
 
         viewPager = (ViewPager) findViewById(R.id.pager_bemvindo);
-        pagerAdapter = new ScreenSlidePageAdapter(getSupportFragmentManager());
+        PagerAdapter pagerAdapter = new ScreenSlidePageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -81,7 +80,7 @@ public class BemvindoSlideActivity extends AppCompatActivity {
         });
     }
 
-    public void abrirTelaPrincipal(){
+    private void abrirTelaPrincipal(){
         prefManager.setFirstTimeLaunch(false);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

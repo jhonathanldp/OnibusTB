@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="@drawable/imagem_principal"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textoTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_directions_bus_white_48dp"
+            android:drawableRight="@drawable/ic_directions_bus_white_48dp"
+            android:text="@string/nome_titulo"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="48sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/adicionarFavorito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botao_estilo_contato"
+        android:layout_gravity="center"
+        android:contentDescription="@string/e_mail"
+        android:onClick="adicionarFavorito"
+        android:src="@drawable/ic_favorite_border_black_48dp" />
+
+    <TextView
+        android:id="@+id/adicioneFavoritoDescricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/dialog_desc_remove"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+</LinearLayout>

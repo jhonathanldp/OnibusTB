@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -14,7 +13,6 @@ import java.util.List;
 
 import Models.Horario;
 import Models.Regioes;
-import Models.TipoHorario;
 
 /**
  * Created by jhona on 30/12/2016.
@@ -111,10 +109,7 @@ public class DataBase extends SQLiteAssetHelper {
             horarioList.add(horario);
             cursor.moveToNext();
         }
-        Log.d("teste", String.valueOf(cursor.getCount()));
         cursor.close();
-        Log.d("horairo", horarioList.get(horarioList.size() - 1).getHorario());
-        Log.d("horairo", String.valueOf(horarioList.size()));
         return horarioList;
     }
 
@@ -143,31 +138,6 @@ public class DataBase extends SQLiteAssetHelper {
         closeDatabase();
 
         return horarioList;
-    }
-
-    public List<TipoHorario> listarTipoHorario() {
-        List<TipoHorario> tipoHorarioList = new ArrayList<>();
-        TipoHorario tipoHorario;
-
-        openDatabase();
-
-        String sql = "SELECT * FROM TIPODEHORARIO";
-
-        Cursor cursor = mDatabase.rawQuery(sql, null);
-        cursor.moveToFirst();
-
-        while (!cursor.isAfterLast()) {
-            tipoHorario = new TipoHorario(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
-
-            tipoHorarioList.add(tipoHorario);
-            cursor.moveToNext();
-        }
-
-        cursor.close();
-        closeDatabase();
-
-        return tipoHorarioList;
-
     }
 
 }

@@ -30,6 +30,7 @@
     <string name="proximo">Avançar</string>
     <string name="pular">Pular</string>
     <string name="entendi">Ok, Entendi</string>
+    <string name="dialog_desc_remove">Gostaria de remover esse horário dos favoritos?</string>
     <string-array name="selecaoTipoHorario">
         <item>Dias úteis</item>
         <item>Sábados</item>

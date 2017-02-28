@@ -18,12 +18,11 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
 /**
- * Created by jhona on 14/01/2017.
+ * Created by Jhonathan on 14/01/2017.
  */
 
 public class ContatoActivity extends AppCompatActivity {
     private final String [] e_mail = {"jhonathanldp@outlook.com"};
-    private final String subject = "Sugestões/Criticas";
     private ShareDialog shareDialog;
 
     @Override
@@ -69,6 +68,7 @@ public class ContatoActivity extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("mailto:"));
             intent.putExtra(Intent.EXTRA_EMAIL, e_mail);
+            String subject = "Sugestões/Criticas";
             intent.putExtra(Intent.EXTRA_SUBJECT, subject);
             if(intent.resolveActivity(getPackageManager()) != null){
                 startActivity(intent);

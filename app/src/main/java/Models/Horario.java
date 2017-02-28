@@ -1,7 +1,7 @@
 package Models;
 
 /**
- * Created by jhona on 07/01/2017.
+ * Created by Jhonathan on 07/01/2017.
  */
 
 public class Horario {

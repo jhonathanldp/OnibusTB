@@ -25,7 +25,7 @@ import Models.Horario;
 import adapter.AdapterHorarios;
 
 /**
- * Created by jhona on 08/01/2017.
+ * Created by Jhonathan on 08/01/2017.
  */
 
 public class HorariosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, CustomDialogFragment.NoticeDialogListener {
@@ -40,6 +40,7 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
     private ContentValues contentValues;
     private String tipoHorarioSelecionado;
     private CustomDialogFragment customDialogFragment;
+    private String favoritoPress;
 
 
     @Override
@@ -66,7 +67,7 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
 
         carregadorDeHorarios = new CarregadorDeHorarios(progressBar, dataBase, this, this);
 
-        String favoritoPress = getIntent().getStringExtra("favorito");
+        favoritoPress = getIntent().getStringExtra("favorito");
 
         contentValues.put("parametroTipoHorario", "1");
 
@@ -109,9 +110,14 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    public void abrirDialogo(){
+    private void abrirDialogo(){
         customDialogFragment = new CustomDialogFragment();
-        customDialogFragment.show(getFragmentManager(),"DialogFavoritoAdd");
+        if ("true".equals(favoritoPress)){
+            customDialogFragment.show(getFragmentManager(),"DialogFavoritoRemove");
+        }else {
+            customDialogFragment.show(getFragmentManager(),"DialogFavoritoAdd");
+        }
+
     }
 
     public void callbackCarregarHorarios(List<Horario> result) {
@@ -146,7 +152,7 @@ public class HorariosActivity extends AppCompatActivity implements AdapterView.O
         abrirDialogo();
     }
 
-    public void recarregarItens() {
+    private void recarregarItens() {
         carregadorDeHorarios = new CarregadorDeHorarios(progressBar, dataBase, this, this);
         carregadorDeHorarios.execute(contentValues);
     }

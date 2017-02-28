@@ -2,7 +2,6 @@ package adapter;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -15,7 +14,7 @@ import java.util.List;
 import Models.Horario;
 
 /**
- * Created by jhona on 08/01/2017.
+ * Created by Jhonathan on 08/01/2017.
  */
 
 public class AdapterHorarios extends BaseAdapter {

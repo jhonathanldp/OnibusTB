@@ -13,7 +13,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
 /**
- * Created by jhona on 27/12/2016.
+ * Created by Jhonathan on 27/12/2016.
  */
 
 public class MainActivity extends AppCompatActivity {
