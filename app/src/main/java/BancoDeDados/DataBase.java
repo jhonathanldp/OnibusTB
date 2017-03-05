@@ -120,7 +120,8 @@ public class DataBase extends SQLiteAssetHelper {
         openDatabase();
 
         String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao JOIN LINHAS l ON h.id_linhas = l.id_linhas" +
-                " AND h.favorito = ?";
+                " AND h.favorito = ? " +
+                "ORDER BY h.horario ASC";
         String args[] = {"1"}; // No SQLite boolean é validado por 1 para true e 0 para false
 
         Cursor cursor = mDatabase.rawQuery(sql, args);
