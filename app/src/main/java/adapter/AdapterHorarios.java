@@ -94,6 +94,12 @@ public class AdapterHorarios extends BaseAdapter {
             viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.marrom));
         } else if (mHorarioList.get(position).getId_linha() == 13) {
             viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.pink));
+        }else if (mHorarioList.get(position).getId_linha() == 14) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.roxo_rosado));
+        }else if (mHorarioList.get(position).getId_linha() == 15) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.azul_hyper_claro));
+        }else if (mHorarioList.get(position).getId_linha() == 16) {
+            viewHolder.corLinha.setBackgroundColor(ContextCompat.getColor(mContext, R.color.amarelo_esquisito));
         }
 
         return v;

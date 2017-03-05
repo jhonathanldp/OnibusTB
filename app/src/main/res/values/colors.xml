@@ -17,7 +17,10 @@
     <color name="marrom">#795548</color>
     <color name="pink">#E91E63</color>
     <color name="transparent">#00FFFFFF</color>
-
-    <!-- Cores para o Slide Incial-->
-
+    <color name="amarelo_escuro">#989A2E</color>
+    <color name="amarelo_esquisito">#EBED89</color>
+    <color name="laranja_estranho">#E19E47</color>
+    <color name="verde_piscina">#03716D</color>
+    <color name="azul_hyper_claro">#BFFFFE</color>
+    <color name="roxo_rosado">#F464EF</color>
 </resources>

@@ -22,7 +22,7 @@ import Models.Regioes;
 
 public class DataBase extends SQLiteAssetHelper {
     private static final String DBNOME = "onibustb.db";
-    private static final int DBVERSION = 7;
+    private static final int DBVERSION = 8;
     private SQLiteDatabase mDatabase;
 
     public DataBase(Context context) {
@@ -96,7 +96,8 @@ public class DataBase extends SQLiteAssetHelper {
         String sql = "SELECT * FROM HORARIOS h JOIN BAIRROS b ON h.id_regiao = b.id_regiao JOIN LINHAS l ON h.id_linhas = l.id_linhas " +
                 "AND h.id_regiao = ? " +
                 "AND h.id_tipoHorario = ? " +
-                "AND h.retorno = ?";
+                "AND h.retorno = ? " +
+                "ORDER BY h.horario ASC";
 
         Cursor cursor = mDatabase.rawQuery(sql, argumentos);
         cursor.moveToFirst();
