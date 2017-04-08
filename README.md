@@ -3,6 +3,7 @@ Aplicativo para verificar horários de Ônibus em Telêmaco Borba-PR, todo o pro
 
 A ideia é apenas auxiliar usuários do serviço publico na região.
 
-Para testar, basta enviar uma pedido para jhonathanldp@outlook.com
+Em breve na Google Play Store
+
 
 
